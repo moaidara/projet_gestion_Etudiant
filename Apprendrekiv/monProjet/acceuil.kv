@@ -1,0 +1,159 @@
+#:kivy 2.1.0
+#: import hex kivy.utils.get_color_from_hex
+#: set noir "#000000" # La mise en position de la couleur noir
+#: set blanc "#f1f1f1" 
+#: set bleu "#0011"
+#: set small dp(12)
+#: set meduim dp(24)
+#: set extra dp(36)
+#: set radius_ dp (20)
+
+<Acceuil>:
+    orientation:"vertical"
+    canvas.before:
+        # Color:
+        #     rgba: 1, 1, 1, 1
+        Rectangle:
+            source:'img/image.jpg'
+            pos: self.pos
+            size:self.size
+    Label:
+        canvas.before:
+            Color:
+                rgba: 0, 0, 0, 0.5
+            Rectangle:
+                size:self.size
+                pos:self.pos    
+        text:"Gestion des Etudiants"
+        font_name: "Roboto"
+        font_size: extra
+        size_hint: 1, 0.1
+    BoxLayout:
+        orientation:"horizontal"
+        BoxLayout:
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 0.8
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: radius_, radius_
+            orientation:"vertical"
+            size_hint: None, 1
+            width: dp(400)
+            padding: dp(15), dp(25)
+            color:  0.5, 0.7, 1, 0.8 
+
+            Button:
+                text:"Acceuil"
+                font_size: meduim
+                font_name: 'Roboto'
+                radius: radius_, radius_
+                background_color: 0.3, 0.7, 1, 1
+            Button:
+                id: ajoutEtudiant
+                on_press: app.gestion.transition.direction="left";app.gestion.current="ajoutEtudiant"
+                text:"Ajouter Etudiant"
+                font_size: meduim
+                font_name: 'Roboto'
+                radius: radius_, radius_
+                background_color: 0.3, 0.7, 1, 1 
+            Button:
+                text:"Modifier Etudiant"
+                font_size: meduim
+                font_name: 'Roboto'
+                background_color: 0.3, 0.7, 1, 1
+                on_press: app.gestion.transition.direction="left";app.gestion.current="modifierEtudiant"
+            Button:
+                text:"Supprimer Etudiant"
+                font_size: meduim
+                font_name: 'Roboto'
+                background_color: 0.3, 0.7, 1, 1
+                on_press: app.gestion.transition.direction="left";app.gestion.current="supprimerEtudiant"
+            Button:
+                text:"Ajouter les notes"
+                font_size: meduim
+                font_name: 'Roboto'
+                background_color: 0.3, 0.7, 1, 1
+                on_press: app.gestion.transition.direction="left";app.gestion.current="ajouterNote"
+            Button:
+                text:"Modifier les notes"
+                font_size: meduim
+                font_name: 'Roboto'
+                background_color: 0.3, 0.7, 1, 1
+                on_press: app.gestion.transition.direction="left";app.gestion.current="modifierNote"
+            Button:
+                text:"Affichage Bulletin"
+                font_size: meduim
+                font_name: 'Roboto'
+                background_color: 0.3, 0.7, 1, 1 
+                on_press: app.gestion.transition.direction="left";app.gestion.current="RechercherBultin"
+        
+        BoxLayout:
+            orientation:"vertical"
+            spacing: dp(20)
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 0.8
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: radius_, radius_
+
+            BoxLayout:
+                size_hint: None, None
+                width: dp(300)
+                height: dp(10)
+                pos_hint: {"center_x":0.5}
+                canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, 0.1
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+                        radius: radius_, radius_
+            BoxLayout:
+                
+                size_hint: None, None
+                width: dp(300)
+                height: dp(30)
+                pos_hint: {"center_x":0.5}
+                canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, 0.8
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+                        radius: radius_, radius_
+
+                TextInput:
+                    
+                    multiline: False
+                    hint_text: "donnez le matricul de l'etudiant a rechercher"
+                    size_hint: None, None
+                    width: dp(300)
+                    height: dp(30)
+            BoxLayout:
+                canvas.before:
+                    Color:
+                        rgba: 0, 0, 0, 0.5
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+                        radius: radius_, radius_
+                ScrollView:
+                    MonTableau:
+                        id: table_layout
+                        cols: 10  # Correspond au nombre de colonnes du DataFrame
+                        size_hint_y: None
+                        height: self.minimum_height
+                        spacing: 5
+                        padding: [10, 10]
+                    
+                    
+            
+            
+            
+            
+            
+                                

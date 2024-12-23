@@ -1,0 +1,60 @@
+#:kivy 2.1.0
+#: import hex kivy.utils.get_color_from_hex
+#: set noir "#000000" # La mise en position de la couleur noir
+#: set blanc "#f1f1f1" 
+#: set small dp(12)
+#: set meduim dp(24)
+#: set extra dp(36)
+
+#:import pageDeconnexion pageDeconnexion
+#:import acceuil acceuil
+#:import ajout ajout
+#:import modifier modifier
+#:import supprimer supprimer
+#:import bultin bultin
+#:import affBultin affBultin
+#:import ajouter_note ajouter_note
+#:import modifier_note modifier_note
+
+# PageConexion:
+# Acceuil:
+# Ajout:
+# Modifier:
+# Supprimer:
+# AffBultin:
+# Bultin:
+# Ajouter_note:
+# Modifier_note:
+
+
+
+
+<GestionEcran>:
+    Screen:
+        name: "login"
+        PageConexion:
+    Screen:
+        name: "acceuil"
+        Acceuil:
+    Screen:
+        name: "ajoutEtudiant"
+        Ajout:
+    Screen:
+        name: "modifierEtudiant"
+        Modifier:
+    Screen:
+        name: "supprimerEtudiant"
+        Supprimer:
+    Screen:
+        name: "RechercherBultin"
+        Bultin:
+    Screen:
+        name: "AfficherBultin"
+        AffBultin:
+    Screen:
+        name: "ajouterNote"
+        Ajouter_note:
+    Screen:
+        name: "modifierNote"
+        Modifier_note:
+    

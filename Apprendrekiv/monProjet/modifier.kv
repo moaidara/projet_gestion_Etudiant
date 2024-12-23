@@ -1,0 +1,283 @@
+#:kivy 2.1.0  
+#: import hex kivy.utils.get_color_from_hex
+#conversion des codes hexadecimaux en couleurs rgba
+
+#: set noir "#000000" 
+# Definit une variable 'noir' a travers le code hexadecimal
+
+#: set blanc "#ffffff" 
+# Definit une variable 'blanc' a travers le code hexadecimal
+
+#: set bleu "#0011" 
+# Definit une variable 'bleu' a travers le code hexadecimal
+
+#: set small dp(12) 
+# Definit une variable 'small' de taille 12
+
+#: set medium dp(24) 
+# Definit une variable 'meduim' de taille 24
+
+#: set extra dp(36) 
+# Definit une variable 'extra' de taille 36
+
+#: set radius_ dp (20) 
+# Definit une variable 'raduis' de taille 20
+
+#: set round dp(20) 
+# Definit une variable 'round' a travers le code hexadecimal
+
+#Fait appel a la classe Ajout depuis le fichier .py
+<Modifier>:
+    #l'orientation des widgets verticalement
+    orientation: "vertical"
+
+    # Indique qu les elements graphiques seront dessines avant les widgets 
+    canvas.before:
+        # La definition du couleur en bleu
+        Color:
+            rgba: 0.2, 0.6, 0.8, 1
+
+        # La mise en point de l'image transferer dpuis le document    
+        Rectangle:
+            source: "img/image.jpg"
+            pos:self.pos
+            size: self.size
+
+    # Affichage du text        
+    Label:
+        canvas.before:
+            Color:
+                rgba: 0,0,0,0.75
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        # Text afficher par le label         
+        text: "Modifier etudiant"
+        font_size: dp(30)
+        size_hint: 1, 0.5
+    
+    # Permettre le positionnement precis des widgets en fonction des coordonnees et des proportions     
+    FloatLayout:
+        
+        canvas.before:
+            Color:
+                # rgb:hex(blanc)
+            RoundedRectangle:
+                pos:self.pos
+                size:self.size
+                radius: radius_, radius_
+        size_hint: 0.9, 5.5
+        pos_hint:{"center_x": 0.5, "center_y":0.57}
+        Label:
+            id:message_label
+            text: "" 
+            font_size: dp(10)
+            pos_hint: {"center_x":0.5,"center_y":0.05}
+            size_hint: 1, 0.2
+            color: 1, 0, 0, 1
+            halign: "center"
+            valign: "middle"
+            # orientation: "vertical"
+
+#   Affichage des text input avec l'aide des boxlayouts et autres
+
+        BoxLayout:
+            orientation:"vertical"
+            pos_hint:{"center_x": 0.5, "top":1.10} 
+            spacing: dp(60)
+            padding: dp(15), dp(70)
+            # BoxLayout:
+            #     orientation:"horizontal"
+            #     size_hint:0.5, 0.07
+            #     pos_hint:{"center_x":0.5, "top":1}
+            #     # spacing: dp(10)
+            #     
+            BoxLayout:
+                orientation:"horizontal"
+                size_hint:0.5, 0.07
+                pos_hint:{"center_x":0.5, "top":0.9}
+                spacing: dp(10)
+                canvas.before:
+                    Color:
+                        rgb: 1,1,1,1
+                    Rectangle:
+                        pos:self.pos
+                        size:self.size    
+                Label:
+                    text: "matricule"
+                    color: 0, 0, 0
+                    font_size: dp(20)
+                    font_name:'Roboto'
+                    size_hint: 0.7, 0.3
+                    text_size: self.size
+                    valign: 'middle'
+                    halign: 'right'
+                TextInput:
+                    id: matricule
+                    multiline: False
+                    write_tab: False
+                    size_hint: 0.7, 0.3
+                    font_size: dp(20)
+    # Cela empêchera l'exécution de la méthode validate_inputs() lorsqu'il y a un changement dans le champ de texte 
+                    on_text: root.validate_inputs()
+
+                #Button pour voir si le matricule entree est valide ou pas
+     
+                Button:
+                    text:"Valider"
+                    background_color: 0.3, 0.7, 1, 1
+                    size_hint: 0.7, 0.3
+                #prend en compte les informations que l'etudiant avait enregistrer pour poursuivre les modifications  
+                    on_press:
+                        app.gestion.Search_Student(matricule.text); 
+                        nom.text = app.gestion.nomSS;
+                        prenom.text = app.gestion.prenomSS;
+                        adresse.text = str(app.gestion.adresseSS);
+                        age.text = str(app.gestion.ageSS);
+                        nom_users.text = str(app.gestion.nom_usersSS);
+                        sex.text = app.gestion.sexSS
+                        numero.text = str(app.gestion.numeroSS)
+                        mail.text = str(app.gestion.nomSS);
+                        niveau.text= app.gestion.niveauSS;
+                        message_label.text = app.gestion.message
+            # Creation d'une boxLayout pour les differentes champs de modification                                                  
+            BoxLayout:
+                orientation:"horizontal"
+                size_hint:1, 0.03
+                spacing: dp(10)
+                TextInput:
+                    id:nom
+                    text:"nom"
+                    font_name:"Roboto"
+                    font_size:dp(20)
+                    text_size:self.size
+                    halign:"center"
+                    valign:"middle"
+                    disabled: True
+                    multiline: False
+                    write_tab: False
+                TextInput:
+                    id:prenom
+                    text:"prenom"
+                    font_name:"Roboto"
+                    font_size:dp(20)
+                    text_size:self.size
+                    halign:"center"
+                    valign:"middle"
+                    disabled: True                
+                    multiline: False
+                    write_tab: False
+                TextInput:
+                    id:age
+                    text:"age"
+                    font_name:"Roboto"
+                    font_size:dp(20)
+                    text_size:self.size
+                    halign:"center"
+                    valign:"middle"
+                    disabled: True                
+                    multiline: False
+                    write_tab: False    
+
+            BoxLayout:
+                size_hint:1, 0.03
+                spacing: dp(10)
+                orientation:"horizontal"
+            # Permet d'afficher le champs en mode liste deroulante    
+                Spinner:
+                    id:niveau
+                    text:"niveau"
+                    values:['Licence 1', 'Licence 2', 'Licence 3', 'Master 1', 'Master 2']
+                    font_name:"Roboto"
+                    font_size:dp(20)
+                    text_size:self.size
+                    halign:"center"
+                    valign:"middle"
+                    disabled: True              
+                    multiline:False
+                    write_tab:False
+                TextInput:
+                    id:adresse
+                    hint_text:"adresse"
+                    font_name:"Roboto"
+                    font_size:dp(20)
+                    text_size:self.size
+                    halign:"center"
+                    valign:"middle"
+                    disabled: True                
+                    multiline:False
+                    write_tab:False
+                Spinner:
+                    id:sex
+                    text:"sex(M/F)"
+                    values:["Masculin", "Feminin"]
+                    font_name:"Roboto"
+                    font_size:dp(20)
+                    text_size:self.size
+                    halign:"center"
+                    valign:"middle"
+                    disabled: True                
+                    multiline: False
+                    write_tab: False 
+                TextInput:
+                    id:nom_users
+                    hint_text:"Nom d'utilisateur"
+                    font_name:"Roboto"
+                    font_size:dp(20)
+                    text_size:self.size
+                    halign:"center"
+                    valign:"middle"
+                    disabled: True                
+                    multiline: False
+                    write_tab: False 
+            BoxLayout:
+                size_hint:1, 0.03
+                spacing: dp(10)
+                orientation:"horizontal"
+                TextInput:
+                    id:numero
+                    hint_text:"Numero de Telephone"
+                    font_name:"Roboto"
+                    font_size:dp(20)
+                    text_size:self.size
+                    halign:"center"
+                    valign:"middle"
+                    disabled: True             
+                    multiline:False
+                    write_tab:False
+                TextInput:
+                    id:mail
+                    hint_text:"adresse email"
+                    font_name:"Roboto"
+                    font_size:dp(20)
+                    text_size:self.size
+                    halign:"center"
+                    valign:"middle"
+                    disabled: True             
+                    multiline: False
+                    write_tab: False 
+# Affichage du boutton modifier                       
+        Button:
+            text: "Modifier Etudiant"
+            font_size: dp(18)
+            size_hint: 0.25, 0.09
+            pos_hint:{"center_x":0.5, "y":0.09}  
+            background_color: 0.3, 0.7, 1, 1             
+            font_name: "Roboto"
+        # Met à jour le texte du 'message_label' avec la valeur du message qui se trouve dans 'app.gestion'        
+            on_press:
+                app.gestion.Modify_Student(nom.text, prenom.text,nom_users.text,matricule.text,age.text,adresse.text,niveau.text,sex.text,numero.text, mail.text);
+                message_label.text = app.gestion.message 
+
+# Affichage du button retour a la menu principale
+        Button:
+            text: "Retour"
+            font_size: dp(18)
+            pos_hint:{"right":0.95,"center_y":0.06}
+            size_hint: None, 0.09
+            width: dp(150)
+            background_color: 0.2, 0.6, 0.8, 1
+            font_name: 'Roboto'
+            on_press: app.gestion.transition.direction="right";app.gestion.current="acceuil"
+
+

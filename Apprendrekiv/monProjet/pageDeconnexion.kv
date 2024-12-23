@@ -1,0 +1,98 @@
+#:kivy 2.1.0
+
+<PageConexion>:
+   
+    canvas.before:
+        Rectangle:
+            size: self.size
+            pos: self.pos
+            source: "img/image.jpg"
+
+    orientation: 'vertical'        
+
+    Label:
+        canvas.before:
+            Color:
+                rgba: 0,0,0, 0.5
+            Rectangle:
+                pos: self.pos
+                size: self.size 
+        id: label1PC   
+        text:"Bienvenue sur l'interface de connexion de ETUDADMIN"
+        size_hint: 1, 0.1
+        font_size: '30sp'
+        color: 1, 1, 1, 1
+
+    FloatLayout:
+        
+        orientation: 'horizontal'
+        
+        FloatLayout:
+            id: logoPC
+            size_hint: None, None
+            size: dp(450), dp(450)
+            pos_hint:{"x":0.2, "center_y": 0.5}
+            canvas.before:
+                # Color:
+                #     rgba: 1, 1, 1, 1
+                RoundedRectangle:
+                
+                    pos: self.pos
+                    size: self.size
+                    radius: dp(20), dp(20)  
+                    source: "img/backLogoPC.png"
+        
+        FloatLayout:
+           
+            id: form1PC
+            size_hint: None, None
+            size: dp(275), dp(275)
+            pos_hint:{"x":0.6, "center_y": 0.5}
+            
+            canvas.before:
+
+                RoundedRectangle:
+                    
+                    pos: self.pos
+                    size: self.size
+                    radius: dp(20), dp(20)         
+            
+
+            Label:
+                size_hint: 0.5, 0.1
+                text: "Veuillez vous identifier!"
+                pos_hint:{"center_x":0.5, "center_y": 0.8}
+                color: 0, 0, 0, 1    
+
+            TextInput:
+                id: loginPC
+                multiline: False
+                hint_text: "Nom d'utilisateur"
+                size_hint: 0.5, 0.1
+                pos_hint:{"center_x":0.5, "center_y": 0.6}
+            
+            TextInput:
+                id: mdpdPC
+                multiline: False
+                hint_text: "Mot de passe"
+                size_hint: 0.5, 0.1
+                pos_hint:{"center_x":0.5, "center_y": 0.4}
+                password: True
+                
+            Label:
+                id: messagePC
+                size_hint: 0.5, 0.1
+                opacity:0
+                font_size: '10sp'
+                text: "mot de passe et ou nom d'utilisateur invalide"
+                pos_hint:{"center_x":0.5, "center_y": 0.3}
+                color: 0, 0, 0, 1     
+                   
+            
+            Button:
+                id:btnConnexionPC
+                text:'connexion'
+                size_hint: 0.3, 0.1
+                pos_hint: {"center_x": 0.5, "center_y": 0.2}
+                # on_press: app.gestion.transition.direction="left";app.gestion.current="monInterfaceTest"
+                on_press: app.gestion.check_Authentification(loginPC.text, mdpdPC.text); messagePC.opacity = 1 
