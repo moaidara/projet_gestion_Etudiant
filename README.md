@@ -1,3 +1,6 @@
+veuillez bien lire ce fichier avant d'executer le programme
+le projet se trouve dans le dossier Apprendrekiv\monProjet 
+l'interface graphique est lance a partir du fichier main.py
 Description :
     ce projet vise a creer une application de gestion des etudiants
     Groupe:
